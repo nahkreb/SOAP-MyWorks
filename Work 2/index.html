@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TC Kimlik Doğrulama</title>
+    <script>
+        function validateForm() {
+            var tckimlikno = document.getElementById("tckimlikno").value;
+            var dogumYili = document.getElementById("dogumyili").value;
+            var regexTCKimlikNo = /^[0-9]{11}$/;
+            var regexDogumYili = /^[0-9]{4}$/;
+
+            if (!regexTCKimlikNo.test(tckimlikno)) {
+                alert("TC Kimlik No 11 haneli bir sayı olmalıdır.");
+                return false;
+            }
+
+            if (!regexDogumYili.test(dogumYili)) {
+                alert("Doğum yılı 4 haneli bir sayı olmalıdır.");
+                return false;
+            }
+            
+            // Ad ve Soyad büyük harfe dönüştürülüyor
+            document.getElementById("ad").value = document.getElementById("ad").value.toUpperCase();
+            document.getElementById("soyad").value = document.getElementById("soyad").value.toUpperCase();
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>TC Kimlik Doğrulama</h1>
+    <form action="index.php" method="post" onsubmit="return validateForm()">
+        <label for="tckimlikno">TC Kimlik No:</label>
+        <input type="text" id="tckimlikno" name="tckimlikno" required><br><br>
+        
+        <label for="ad">Ad:</label>
+        <input type="text" id="ad" name="ad" required><br><br>
+        
+        <label for="soyad">Soyad:</label>
+        <input type="text" id="soyad" name="soyad" required><br><br>
+        
+        <label for="dogumyili">Doğum Yılı:</label>
+        <input type="text" id="dogumyili" name="dogumyili" required><br><br>
+        
+        <button type="submit">Sorgula</button>
+    </form>
+</body>
+</html>
